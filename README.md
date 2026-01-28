@@ -17,7 +17,7 @@ Um projeto de automação para transformar o Arch Linux em um ambiente desktop m
 
 - **WM:** Hyprland
 - **Barra:** Waybar
-- **Launcher:** Rofi (Wayland fork)
+- **Launcher:** Rofi
 - **Cores/Temas:** Wallust
 - **Terminal:** Kitty
 - **Gerenciador de Arquivos:** Dolphin
