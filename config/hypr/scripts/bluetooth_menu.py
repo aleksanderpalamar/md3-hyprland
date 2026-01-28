@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# License: GPLv3
+# Author: Aleksander Palamar
 import subprocess
 import time
 
