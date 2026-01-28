@@ -1,4 +1,7 @@
 #!/bin/bash
+# License: GPLv3
+# Main Installer for MD3-Hyprland
+# Author: Aleksander Palamar
 
 # Colors for output
 GREEN='\033[0;32m'

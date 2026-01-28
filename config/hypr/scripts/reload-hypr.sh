@@ -1,5 +1,6 @@
 #!/bin/bash
-
+# License: GPLv3
+# Author: Aleksander Palamar
 # Recarregar configurações do Hyprland
 hyprctl reload
 

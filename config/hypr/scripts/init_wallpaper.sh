@@ -1,5 +1,6 @@
 #!/bin/bash
-
+# License: GPLv3
+# Author: Aleksander Palamar
 # Define paths
 CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
 

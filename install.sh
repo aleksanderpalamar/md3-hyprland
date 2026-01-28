@@ -1,5 +1,7 @@
 #!/bin/bash
-
+# License: GPLv3
+# Main Installer for MD3-Hyprland
+# Author: Aleksander Palamar
 # Main Installer for MD3-Hyprland
 # Author: Gemini
 
