@@ -71,3 +71,7 @@ Para recarregar o Hyprland e a Waybar com as novas cores, você pode precisar re
 ## Nota
 
 Este script foi projetado para **Arch Linux**. O uso em outras distribuições pode exigir adaptações nos comandos de instalação de pacotes (`pacman`/`yay`).
+
+## Licença
+
+Este projeto está licenciado sob a Licença Pública Geral GNU v3.0 (GPLv3) - veja o arquivo [LICENSE](LICENSE) para detalhes.
