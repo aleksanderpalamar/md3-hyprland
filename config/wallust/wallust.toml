@@ -1,0 +1,12 @@
+# Wallust Configuration
+
+backend = "kmeans"
+color_space = "lab"
+palette = "dark16"
+
+[templates]
+hyprland = { template = "colors-hyprland.conf", target = "~/.config/hypr/colors.conf" }
+waybar = { template = "colors-waybar.css", target = "~/.config/waybar/colors.css" }
+rofi = { template = "colors-rofi.rasi", target = "~/.config/rofi/colors.rasi" }
+kitty = { template = "colors-kitty.conf", target = "~/.config/kitty/colors.conf" }
+swaync = { template = "colors-swaync.css", target = "~/.config/swaync/colors.css" }

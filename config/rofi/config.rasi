@@ -1,0 +1,82 @@
+configuration {
+    modi: "drun,run";
+    show-icons: true;
+    icon-theme: "Papirus";
+    terminal: "kitty";
+    drun-display-format: "{icon} {name}";
+    disable-history: false;
+    sidebar-mode: false;
+    display-drun: "Apps";
+    display-run: "Run";
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+@import "colors.rasi"
+
+* {
+    background-color: transparent;
+    text-color: @foreground;
+    margin: 0;
+    padding: 0;
+}
+
+window {
+    transparency: "real";
+    width: 600px;
+    background-color: @background;
+    border: 2px;
+    border-color: @primary;
+    border-radius: 24px;
+    padding: 20px;
+}
+
+mainbox {
+    children: [inputbar, listview];
+}
+
+inputbar {
+    background-color: @secondary;
+    text-color: @background;
+    border-radius: 24px;
+    padding: 12px 16px;
+    margin: 0 0 20px 0;
+    children: [prompt, entry];
+}
+
+prompt {
+    text-color: inherit;
+    margin: 0 12px 0 0;
+}
+
+entry {
+    text-color: inherit;
+    placeholder: "Search...";
+    placeholder-color: inherit;
+}
+
+listview {
+    lines: 8;
+    columns: 1;
+    scrollbar: false;
+    spacing: 8px;
+}
+
+element {
+    padding: 12px 16px;
+    border-radius: 16px;
+    spacing: 12px;
+    children: [element-icon, element-text];
+}
+
+element selected {
+    background-color: @primary;
+    text-color: @background;
+}
+
+element-icon {
+    size: 24px;
+}
+
+element-text {
+    vertical-align: 0.5;
+}

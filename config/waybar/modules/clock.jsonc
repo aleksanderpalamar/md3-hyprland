@@ -1,0 +1,15 @@
+{
+  "clock": {
+    "interval": 1,
+    "format": "{:%B %d, %H:%M}",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "smooth-scrolling-threshold": 1,
+    },
+    "tooltip": false,
+    "on-click": "gnome-calendar",
+  },
+}

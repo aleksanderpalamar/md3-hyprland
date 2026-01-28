@@ -1,0 +1,46 @@
+@import "colors.css";
+
+* {
+  font-family: "JetBrainsMono Nerd Font";
+}
+
+.control-center .notification-row:focus,
+.control-center .notification-row:hover {
+  opacity: 1;
+  background: @color0;
+}
+
+.notification-row {
+  outline: none;
+  margin-top: 10px;
+}
+
+.notification {
+  background: @color0;
+  border-radius: 16px;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid @color8;
+}
+
+.notification-content {
+  background: transparent;
+}
+
+.summary {
+  font-size: 16px;
+  font-weight: bold;
+  color: @foreground;
+}
+
+.body {
+  font-size: 14px;
+  color: @foreground;
+}
+
+.control-center {
+  background-color: @background;
+  opacity: 0.95;
+  border-radius: 20px;
+  border: 2px solid @color8;
+}

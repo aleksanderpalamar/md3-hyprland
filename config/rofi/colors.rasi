@@ -1,0 +1,27 @@
+* {
+    background: #272130;
+    foreground: #D2E6E0;
+    cursor: #848AC5;
+    
+    color0: #4E4758;
+    color1: #1C0E4B;
+    color2: #292380;
+    color3: #254098;
+    color4: #295E96;
+    color5: #3B778C;
+    color6: #5E8A7C;
+    color7: #B6D3CA;
+    color8: #7F948D;
+    color9: #261264;
+    color10: #362EAA;
+    color11: #3255CA;
+    color12: #377DC8;
+    color13: #4E9FBB;
+    color14: #7DB8A5;
+    color15: #B6D3CA;
+
+    /* Material Mappings */
+    primary: @color4;
+    secondary: @color12;
+    urgent: @color1;
+}

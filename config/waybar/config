@@ -1,0 +1,39 @@
+{
+  "include": [
+    "~/.config/waybar/modules/group.jsonc",
+    "~/.config/waybar/modules/clock.jsonc",
+    "~/.config/waybar/modules/tray.jsonc",
+    "~/.config/waybar/modules/network.jsonc",
+    "~/.config/waybar/modules/bluetooth.jsonc",
+    "~/.config/waybar/modules/audio.jsonc"
+  ],
+  "layer": "top",
+  "mode": "dock",
+  "position": "top",
+  "height": 42,
+  "spacing": 4,
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "tray",
+    "pulseaudio",
+    "bluetooth",
+    "network",
+    "group/notify",
+    "group/power"
+  ],
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "active": ""
+    }
+  }
+}

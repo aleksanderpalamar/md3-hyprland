@@ -1,0 +1,9 @@
+{
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-icons": {
+      "default": ["", "", ""],
+    },
+    "on-click": "swaync-client -t -sw",
+  },
+}

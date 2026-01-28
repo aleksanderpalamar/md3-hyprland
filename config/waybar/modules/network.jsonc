@@ -1,0 +1,11 @@
+{
+  "network": {
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰌘",
+    "format-disconnected": "⚠ 󰌙",
+    "tooltip-format": "{ifname} {ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
+    "max-length": 30,
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "on-click": "swaync-client -t -sw",
+  },
+}

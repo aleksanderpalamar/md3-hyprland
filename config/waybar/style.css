@@ -1,0 +1,73 @@
+@import "colors.css";
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+    color: @foreground;
+}
+
+/* Base Module Style */
+.modules-left, .modules-center, .modules-right {
+    background: @background;
+    border-radius: 20px;
+    padding: 2px 10px;
+    margin: 6px 10px;
+}
+
+/* Workspaces */
+#workspaces button {
+    padding: 0 5px;
+    background: transparent;
+    color: @color8; /* Inactive dots */
+    border-radius: 50%;
+}
+
+#workspaces button.active {
+    color: @primary; /* Active dot */
+}
+
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Specific Modules */
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#tray,
+#mode,
+#idle_inhibitor,
+#mpd {
+    padding: 0 10px;
+    margin: 0 4px;
+    background: @surface; 
+    color: @foreground;
+    border-radius: 16px;
+}
+
+/* Active Highlight approximation */
+#clock {
+    font-weight: bold;
+    color: @primary;
+}
+
+#battery.charging {
+    color: @secondary;
+}
+
+#battery.warning:not(.charging) {
+    color: @warning;
+}
