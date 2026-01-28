@@ -2,8 +2,6 @@
 # License: GPLv3
 # Main Installer for MD3-Hyprland
 # Author: Aleksander Palamar
-# Main Installer for MD3-Hyprland
-# Author: Gemini
 
 # Prevent running as root
 if [ "$EUID" -eq 0 ]; then
