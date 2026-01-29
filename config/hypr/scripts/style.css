@@ -1,0 +1,92 @@
+/* Wallust Generated Theme for Custom File Manager */
+@define-color bg_color #272130;
+@define-color fg_color #D2E6E0;
+@define-color primary #295E96;
+@define-color secondary #377DC8;
+@define-color surface #4E4758; /* Using color0 as surface/darker bg */
+@define-color alert #1C0E4B;
+
+* {
+    font-family: "JetBrains Mono", monospace;
+}
+
+window {
+    background-color: @bg_color;
+    color: @fg_color;
+}
+
+headerbar {
+    background-color: @surface;
+    border-bottom: 1px solid @primary;
+    min-height: 46px;
+}
+
+headerbar button {
+    background-color: transparent;
+    color: @fg_color;
+    border-radius: 8px;
+    margin: 4px;
+}
+
+headerbar button:hover {
+    background-color: @secondary;
+    color: @bg_color;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: @surface;
+    border-right: 1px solid @primary;
+}
+
+.sidebar list {
+    background-color: transparent;
+}
+
+.sidebar row {
+    padding: 8px 12px;
+    margin: 2px 8px;
+    border-radius: 8px;
+    color: @fg_color;
+}
+
+.sidebar row:hover {
+    background-color: alpha(@secondary, 0.2);
+}
+
+.sidebar row:selected {
+    background-color: @primary;
+    color: @bg_color;
+}
+
+.sidebar label {
+    font-weight: bold;
+}
+
+/* File Grid View */
+iconview {
+    background-color: @bg_color;
+    color: @fg_color;
+}
+
+iconview:selected {
+    background-color: @primary;
+    color: @bg_color;
+    border-radius: 8px;
+}
+
+/* Path Entry */
+entry {
+    background-color: @surface;
+    color: @fg_color;
+    border: 1px solid @primary;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+/* Scrollbar */
+scrollbar slider {
+    background-color: @secondary;
+    min-width: 8px;
+    border-radius: 4px;
+}

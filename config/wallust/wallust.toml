@@ -10,3 +10,4 @@ waybar = { template = "colors-waybar.css", target = "~/.config/waybar/colors.css
 rofi = { template = "colors-rofi.rasi", target = "~/.config/rofi/colors.rasi" }
 kitty = { template = "colors-kitty.conf", target = "~/.config/kitty/colors.conf" }
 swaync = { template = "colors-swaync.css", target = "~/.config/swaync/colors.css" }
+filemanager = { template = "colors-filemanager.css", target = "~/.config/hypr/scripts/style.css" }
