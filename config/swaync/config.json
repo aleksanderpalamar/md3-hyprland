@@ -54,8 +54,12 @@
           "command": "python3 ~/.config/hypr/scripts/bluetooth_menu.py"
         },
         {
-          "label": "Configurações",
+          "label": "Settings",
           "command": "python3 ~/.config/hypr/scripts/settings_menu.py"
+        },
+        {
+          "label": "Theme",
+          "command": "~/.config/hypr/scripts/toggle_theme.sh"
         },
         {
           "label": "Terminal",

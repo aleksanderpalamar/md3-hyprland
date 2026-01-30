@@ -4,23 +4,50 @@
   font-family: "JetBrainsMono Nerd Font";
 }
 
-.control-center .notification-row:focus,
-.control-center .notification-row:hover {
-  opacity: 1;
-  background: @color0;
+/* Painel de Controle Principal */
+.control-center {
+  background: @surface; /* Fundo sólido da cor Surface */
+  border-radius: 24px;
+  border: 1px solid @outline;
+  box-shadow: 0 4px 12px @shadow;
+  padding: 14px;
 }
 
+/* Widget de Mídia, Volume, etc. */
+.widget-title {
+  color: @on_surface;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.widget-buttons-grid {
+  background-color: @surface_container;
+  border-radius: 16px;
+  padding: 8px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  background: transparent;
+  border-radius: 12px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background: @surface_container_high;
+}
+
+/* Notificações */
 .notification-row {
   outline: none;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .notification {
-  background: @color0;
+  background: @surface_container; /* Fundo do card de notificação */
   border-radius: 16px;
-  padding: 10px;
-  margin: 5px;
-  border: 1px solid @color8;
+  padding: 12px;
+  margin: 6px 0;
+  border: 1px solid @outline;
+  box-shadow: 0 2px 4px @shadow;
 }
 
 .notification-content {
@@ -28,19 +55,58 @@
 }
 
 .summary {
-  font-size: 16px;
-  font-weight: bold;
-  color: @foreground;
+  font-size: 15px;
+  font-weight: 800;
+  color: @primary; /* Destaque no título */
+}
+
+.time {
+  font-size: 11px;
+  color: @on_surface_variant;
 }
 
 .body {
   font-size: 14px;
-  color: @foreground;
+  color: @on_surface;
 }
 
-.control-center {
-  background-color: @background;
-  opacity: 0.95;
-  border-radius: 20px;
-  border: 2px solid @color8;
+/* Ações / Botões da notificação */
+.notification-action {
+  color: @on_primary;
+  background: @primary;
+  border-radius: 12px;
+}
+
+/* Central de Widgets (DND, Bluetooth, etc) */
+.widget-dnd {
+  background: @surface_container;
+  color: @on_surface;
+  border-radius: 12px;
+  margin: 8px;
+}
+
+.widget-dnd > switch:checked {
+  background: @primary;
+  border-color: @primary;
+}
+
+.widget-label > label {
+  color: @on_surface;
+}
+
+.widget-mpris {
+    background-color: @surface_container;
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.widget-mpris-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: @on_surface;
+}
+
+.widget-mpris-subtitle {
+    font-size: 0.9rem;
+    color: @on_surface_variant;
 }
