@@ -18,12 +18,20 @@ if [ ! -f "$WALLPAPER_PATH" ]; then
     curl -L -o "$WALLPAPER_PATH" "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop"
 fi
 
-# 2. Run Wallust to generate colors
-if command -v wallust &> /dev/null; then
+# 2. Run Matugen to generate colors
+if command -v matugen &> /dev/null; then
     echo -e "${BLUE}[*] Generating Material Design 3 colors from wallpaper...${NC}"
-    wallust run "$WALLPAPER_PATH"
+    # Ensure we use the config file which should be linked at ~/.config/matugen/config.toml
+    MATUGEN_CONF="$HOME/.config/matugen/config.toml"
+    if [ -f "$MATUGEN_CONF" ]; then
+        # Default to dark mode for initial setup
+        matugen image "$WALLPAPER_PATH" -c "$MATUGEN_CONF" -m dark
+    else
+        echo -e "${YELLOW}[!] Matugen config not found at $MATUGEN_CONF. Using default generation...${NC}"
+        matugen image "$WALLPAPER_PATH"
+    fi
 else
-    echo -e "${RED}[!] Wallust not found. Skipping color generation.${NC}"
+    echo -e "${RED}[!] Matugen not found. Skipping color generation.${NC}"
 fi
 
 echo -e "${GREEN}[+] Setup Complete!${NC}"

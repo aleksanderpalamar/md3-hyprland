@@ -16,7 +16,7 @@ PKGS=(
     "waybar"
     "rofi-wayland"
     "hyprpaper"
-    "wallust"
+    "matugen-bin"
     "swaync"
     "dolphin"
     "kitty"

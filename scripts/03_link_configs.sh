@@ -16,7 +16,7 @@ TARGET_DIR="$HOME/.config"
 echo -e "${BLUE}[*] Linking configurations...${NC}"
 
 # List of configs to manage
-CONFIGS=("hypr" "waybar" "rofi" "kitty" "swaync" "wallust")
+CONFIGS=("hypr" "waybar" "rofi" "kitty" "swaync" "matugen")
 
 for cfg in "${CONFIGS[@]}"; do
     TARGET="$TARGET_DIR/$cfg"
