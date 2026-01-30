@@ -3,6 +3,7 @@
 # Author: Aleksander Palamar
 # Define paths
 CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
+MATUGEN_CONFIG="$HOME/Projetos/md3-hyprland-setup/config/matugen/config.toml"
 
 # Kill any existing instance to prevent conflicts
 pkill hyprpaper
@@ -12,11 +13,6 @@ sleep 0.5
 hyprpaper &
 PID=$!
 disown $PID
-
-# Wait for hyprpaper to initialize socket (loop up to 5 seconds)
-# We check if the socket exists.
-# Note: Location depends on hyprland version, usually $XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.hyprpaper.sock
-# or just check if 'hyprctl hyprpaper listloaded' returns success.
 
 echo "Waiting for hyprpaper..."
 for i in {1..20}; do
@@ -51,10 +47,28 @@ if [ -f "$CONFIG_FILE" ]; then
             hyprctl hyprpaper wallpaper ",$WALLPAPER_PATH"
         fi
 
-        # Apply Wallust colors
-        echo "Running wallust..."
-        wallust run "$WALLPAPER_PATH" &
-
+        # Apply Matugen colors
+        echo "Running matugen..."
+        
+        # Check for saved theme mode
+        STATE_FILE="$HOME/.cache/matugen_theme_mode"
+        if [ -f "$STATE_FILE" ]; then
+            THEME_MODE=$(cat "$STATE_FILE")
+        else
+            THEME_MODE="dark"
+        fi
+        
+        # Run Matugen with correct mode
+        # Note: we use 'matugen image' with -m flag
+        if [ "$THEME_MODE" == "light" ]; then
+            matugen image "$WALLPAPER_PATH" -c "$MATUGEN_CONFIG" -m light &
+        else
+            matugen image "$WALLPAPER_PATH" -c "$MATUGEN_CONFIG" -m dark &
+        fi
+        
+        # Wait for matugen (since it's fast) then reload
+        wait
+        
         # Reload UI
         echo "Reloading UI..."
         pkill -SIGUSR2 waybar

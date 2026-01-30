@@ -133,8 +133,19 @@ wallpaper = ,{wallpaper_path}
 
         subprocess.run(["hyprctl", "hyprpaper", "unload", "all"], check=False)
         
-        # Update Colors (Wallust)
-        subprocess.run(["wallust", "run", wallpaper_path], check=False)
+        # Update Colors (Matugen)
+        matugen_config = os.path.expanduser("~/Projetos/md3-hyprland-setup/config/matugen/config.toml")
+        theme_state_file = os.path.expanduser("~/.cache/matugen_theme_mode")
+        
+        # Determine current mode (light/dark)
+        current_mode = "dark"
+        if os.path.exists(theme_state_file):
+            with open(theme_state_file, 'r') as f:
+                current_mode = f.read().strip()
+                
+        # Run Matugen
+        subprocess.run(["matugen", "image", wallpaper_path, "-c", matugen_config, "-m", current_mode], check=False)
+        
         subprocess.run(["pkill", "-SIGUSR2", "waybar"], check=False)
         subprocess.run(["swaync-client", "-rs"], check=False)
         subprocess.run(["hyprctl", "reload"], check=False)
