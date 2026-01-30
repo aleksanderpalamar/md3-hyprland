@@ -1,0 +1,12 @@
+[config]
+reload_apps = false  # We handle reloading manually in scripts
+reload_apps_list = {}
+
+[templates]
+hyprland = { input_path = "./templates/colors-hyprland.conf", output_path = "~/.config/hypr/colors.conf" }
+waybar = { input_path = "./templates/colors-waybar.css", output_path = "~/.config/waybar/colors.css" }
+rofi = { input_path = "./templates/colors-rofi.rasi", output_path = "~/.config/rofi/colors.rasi" }
+kitty = { input_path = "./templates/colors-kitty.conf", output_path = "~/.config/kitty/colors.conf" }
+swaync = { input_path = "./templates/colors-swaync.css", output_path = "~/.config/swaync/colors.css" }
+# kitty = { input_path = "./templates/colors-kitty.conf", output_path = "~/.config/kitty/colors.conf" }
+# swaync = { input_path = "./templates/colors-swaync.css", output_path = "~/.config/swaync/colors.css" }
