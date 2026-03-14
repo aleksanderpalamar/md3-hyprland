@@ -1,16 +1,11 @@
 #!/bin/bash
+set -euo pipefail
 
-# Define state file
-STATE_FILE="$HOME/.cache/matugen_theme_mode"
-CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
-MATUGEN_CONFIG="$HOME/Projetos/md3-hyprland-setup/config/matugen/config.toml"
+# shellcheck source=lib/common.sh
+source "$(dirname "$0")/lib/common.sh"
 
 # Read current mode, default to dark if not set
-if [ -f "$STATE_FILE" ]; then
-    CURRENT_MODE=$(cat "$STATE_FILE")
-else
-    CURRENT_MODE="dark"
-fi
+CURRENT_MODE=$(get_theme_mode)
 
 # Toggle mode
 if [ "$CURRENT_MODE" == "dark" ]; then
@@ -22,36 +17,24 @@ fi
 echo "Switching to $NEW_MODE mode..."
 
 # Save new mode
-echo "$NEW_MODE" > "$STATE_FILE"
+echo "$NEW_MODE" > "$THEME_STATE_FILE"
 
 # Get current wallpaper
-if [ -f "$CONFIG_FILE" ]; then
-    WALLPAPER_PATH=$(grep "^wallpaper =" "$CONFIG_FILE" | head -n 1 | cut -d',' -f2 | xargs)
-    
-    if [ -n "$WALLPAPER_PATH" ]; then
-        echo "Reapplying matugen with mode $NEW_MODE for $WALLPAPER_PATH"
-        
-        # Run Matugen
-        matugen image "$WALLPAPER_PATH" -c "$MATUGEN_CONFIG" -m "$NEW_MODE"
-        
-        # Reload UI components
-        echo "Reloading UI..."
-        
-        # Waybar (reload CSS)
-        pkill -SIGUSR2 waybar
-        
-        # SwayNC (reload CSS/Config)
-        swaync-client -rs
-        
-        # Hyprland (reload variables/colors)
-        hyprctl reload
-        
-        # Send notification
-        notify-send "Theme Changed" "Switched to $NEW_MODE mode" -i preferences-desktop-theme
-    else
-        echo "Error: Could not determine wallpaper path from $CONFIG_FILE"
-        notify-send "Theme Error" "Could not find wallpaper path" -u critical
-    fi
+WALLPAPER_PATH=$(get_current_wallpaper)
+
+if [ -n "$WALLPAPER_PATH" ]; then
+    echo "Reapplying matugen with mode $NEW_MODE for $WALLPAPER_PATH"
+
+    # Run Matugen
+    matugen image "$WALLPAPER_PATH" -c "$MATUGEN_CONFIG" -m "$NEW_MODE"
+
+    # Reload UI components
+    echo "Reloading UI..."
+    reload_ui
+
+    # Send notification
+    notify-send "$(i18n MSG_THEME_CHANGED)" "$(i18n MSG_THEME_SWITCHED_TO) $NEW_MODE $(i18n MSG_THEME_MODE)" -i preferences-desktop-theme
 else
-    echo "Error: Config file $CONFIG_FILE not found"
+    echo "Error: Could not determine wallpaper path from $HYPRPAPER_CONFIG"
+    notify_error "$(i18n MSG_THEME_ERROR)"
 fi
