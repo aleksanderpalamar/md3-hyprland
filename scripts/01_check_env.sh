@@ -3,6 +3,8 @@
 # Main Installer for MD3-Hyprland
 # Author: Aleksander Palamar
 
+set -euo pipefail
+
 # Colors for output
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
@@ -32,7 +34,7 @@ else
     makepkg -si --noconfirm
     cd -
     rm -rf /tmp/yay-bin
-    
+
     if command -v yay &> /dev/null; then
         echo -e "${GREEN}[+] 'yay' successfully installed.${NC}"
     else
@@ -41,8 +43,31 @@ else
     fi
 fi
 
-# 3. Detect Install vs Update State
-# We check if crucial config directories already exist
+# 3. Check required commands
+REQUIRED_CMDS=("hyprctl" "matugen" "rofi" "jq" "waybar" "swaync-client")
+MISSING=()
+for cmd in "${REQUIRED_CMDS[@]}"; do
+    if ! command -v "$cmd" &> /dev/null; then
+        MISSING+=("$cmd")
+    fi
+done
+
+if [ ${#MISSING[@]} -gt 0 ]; then
+    echo -e "${YELLOW}[!] Missing commands (will be installed): ${MISSING[*]}${NC}"
+else
+    echo -e "${GREEN}[+] All required commands found.${NC}"
+fi
+
+# 4. Check bash version >= 4
+BASH_MAJOR="${BASH_VERSINFO[0]}"
+if [ "$BASH_MAJOR" -ge 4 ]; then
+    echo -e "${GREEN}[+] Bash version $BASH_VERSION (>= 4).${NC}"
+else
+    echo -e "${RED}[!] Bash version $BASH_VERSION is too old. Bash >= 4 required.${NC}"
+    exit 1
+fi
+
+# 5. Detect Install vs Update State
 CONFIG_DIR="$HOME/.config"
 if [ -d "$CONFIG_DIR/hypr" ] || [ -d "$CONFIG_DIR/waybar" ]; then
     echo -e "${YELLOW}[!] Existing configurations found. This will be an UPDATE/OVERWRITE.${NC}"

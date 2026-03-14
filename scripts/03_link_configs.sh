@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 # License: GPLv3
 # Main Installer for MD3-Hyprland
 # Author: Aleksander Palamar
@@ -49,5 +50,18 @@ fi
 if [ -f "$PROJECT_DIR/assets/md3_default.jpg" ]; then
      cp "$PROJECT_DIR/assets/md3_default.jpg" "$HOME/Pictures/Wallpapers/md3_default.jpg"
 fi
+
+# Write breadcrumb for project root resolution
+echo "$PROJECT_DIR" > "$TARGET_DIR/md3-hyprland-root"
+echo -e "${GREEN}[+] Wrote project root breadcrumb.${NC}"
+
+# Generate SwayNC config from template
+echo -e "${BLUE}[*] Generating SwayNC config from template...${NC}"
+chmod +x "$CONFIG_SRC/hypr/scripts/lib/generate_swaync_config.sh"
+bash "$CONFIG_SRC/hypr/scripts/lib/generate_swaync_config.sh" || true
+echo -e "${GREEN}[+] SwayNC config generated.${NC}"
+
+# Make all scripts executable
+chmod +x "$CONFIG_SRC"/hypr/scripts/*.sh "$CONFIG_SRC"/hypr/scripts/lib/*.sh 2>/dev/null || true
 
 echo -e "${GREEN}[+] Configuration linking complete.${NC}"
