@@ -1,97 +1,190 @@
 @import "colors.css";
+@import "theme.css";
 
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "JetBrainsMono Nerd Font";
-    font-size: 14px;
-    min-height: 0;
+  font-family: "JetBrainsMono Nerd Font";
+  font-weight: normal;
+  min-height: 0;
+  /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+  font-size: 12px; /* 98% */
+  font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
 window#waybar {
-    background: transparent;
-    color: @on_surface;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  border-radius: 0px;
 }
 
-/* Os containers principais (Esquerda, Centro, Direita) */
-.modules-left, .modules-center, .modules-right {
-    background: @surface_container; /* Cor de fundo correta do MD3 */
-    border-radius: 24px; /* Mais arredondado = mais MD3 */
-    padding: 4px 6px;
-    margin: 6px 10px;
-    border: 1px solid @outline; /* Borda sutil se quiser, ou remova */
+window#waybar.hidden {
+  opacity: 0.1;
 }
 
-/* Workspaces */
-#workspaces button {
-    padding: 0 8px;
-    background: transparent;
-    color: @on_surface_variant; /* Cor para inativos */
-    border-radius: 16px;
-    transition: all 0.3s ease;
-}
-
-#workspaces button.active {
-    background: @primary;
-    color: @on_primary; /* Texto legível em cima da cor primária */
-    min-width: 40px; /* Pílula mais larga para o ativo */
-}
-
-#workspaces button:hover {
-    background: @surface_variant;
-}
-
-/* Módulos Individuais */
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#tray,
-#mode,
-#idle_inhibitor,
-#mpd,
-#custom-power {
-    padding: 0 12px;
-    margin: 0 2px;
-    background: transparent; /* Removemos o fundo duplo! */
-    color: @on_surface;
-    border-radius: 16px;
-}
-
-/* Destaques Específicos */
-#clock {
-    font-weight: bold;
-    background: @primary_container;
-    color: @on_primary_container;
-    margin-right: 4px;
-}
-
-#custom-power {
-    background: @error;
-    color: @on_error;
-    padding: 0 12px;
-    border-radius: 16px;
-}
-
-#battery.charging {
-    color: @primary;
-}
-
-#battery.warning:not(.charging) {
-    color: @error;
-}
-
-/* Tooltips */
 tooltip {
-    background: @surface_container;
-    border: 1px solid @outline;
+  border-radius: 12px;
+  padding: 10px;
+  margin: 10px;
 }
 
-tooltip label {
-    color: @on_surface;
+/* Calendário - tooltip do clock */
+#clock tooltip {
+  border-radius: 12px;
+  padding: 10px;
+  margin: 10px;
+}
+
+#taskbar button,
+#workspaces button {
+  box-shadow: none;
+  text-shadow: none;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 9px;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
+#taskbar button.active,
+#workspaces button.active {
+  padding-left: 8px;
+  padding-right: 8px;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
+#taskbar button:hover,
+#workspaces button:hover {
+  padding-left: 8px;
+  padding-right: 8px;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
+#backlight,
+#backlight-slider,
+#battery,
+#bluetooth,
+#clock,
+#cpu,
+#disk,
+#idle_inhibitor,
+#keyboard-state,
+#memory,
+#mode,
+#mpris,
+#network,
+#power-profiles-daemon,
+#pulseaudio,
+#pulseaudio-slider,
+#taskbar,
+#temperature,
+#tray,
+#window,
+#wireplumber,
+#workspaces,
+#custom-backlight,
+#custom-browser,
+#custom-cava_mviz,
+#custom-cycle_wall,
+#custom-dot_update,
+#custom-file_manager,
+#custom-keybinds,
+#custom-keyboard,
+#custom-light_dark,
+#custom-lock,
+#custom-hint,
+#custom-hypridle,
+#custom-menu,
+#custom-playerctl,
+#custom-power_vertical,
+#custom-power,
+#custom-quit,
+#custom-reboot,
+#custom-settings,
+#custom-spotify,
+#custom-swaync,
+#custom-tty,
+#custom-updater,
+#custom-hyprpicker,
+#custom-weather,
+#custom-weather.clearNight,
+#custom-weather.cloudyFoggyDay,
+#custom-weather.cloudyFoggyNight,
+#custom-weather.default,
+#custom-weather.rainyDay,
+#custom-weather.rainyNight,
+#custom-weather.severe,
+#custom-weather.showyIcyDay,
+#custom-weather.snowyIcyNight,
+#custom-weather.sunnyDay {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 6px;
+  padding-left: 6px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+}
+
+@keyframes blink {
+  to {
+    background-color: @text;
+    color: @text-dark;
+  }
+}
+
+@keyframes gradient_f {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#battery.critical:not(.charging) {
+  animation-name: blink;
+  animation-duration: 3s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#custom-media {
+  min-width: 100px;
+}
+
+#custom-language {
+  min-width: 16px;
+}
+
+#backlight-slider slider,
+#pulseaudio-slider slider {
+  min-width: 0px;
+  min-height: 0px;
+  opacity: 0;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+}
+
+#backlight-slider trough,
+#pulseaudio-slider trough {
+  min-width: 80px;
+  min-height: 5px;
+  border-radius: 5px;
+}
+
+#backlight-slider highlight,
+#pulseaudio-slider highlight {
+  min-height: 10px;
+  border-radius: 5px;
 }

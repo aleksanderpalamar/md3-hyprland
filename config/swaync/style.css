@@ -1,112 +1,179 @@
-@import "colors.css";
+/* SwayNC Style Configuration */
+@import url("colors.css");
 
 * {
-  font-family: "JetBrainsMono Nerd Font";
+  font-family: "JetBrainsMono Nerd Font", monospace;
 }
 
-/* Painel de Controle Principal */
+/* Main notification window */
+.notification-window {
+  background-color: var(--background);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 10px;
+  margin: 10px;
+}
+
+/* Individual notification */
+.notification {
+  background-color: var(--background);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 8px 0;
+  border-left: 4px solid var(--primary);
+  transition: all 0.3s ease-in-out;
+}
+
+.notification:hover {
+  background-color: var(--background);
+}
+
+/* Notification title */
+.notification-title {
+  color: var(--foreground);
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* Notification body text */
+.notification-body {
+  color: var(--foreground-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Action buttons */
+.notification-action-button {
+  background-color: var(--primary);
+  color: var(--foreground);
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin: 5px;
+  border: none;
+  font-size: 11px;
+  transition: all 0.2s ease;
+}
+
+.notification-action-button:hover {
+  background-color: var(--primary-light);
+}
+
+.notification-action-button:active {
+  background-color: var(--primary-dark);
+}
+
+/* Notification icon */
+.notification-icon {
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+/* Critical notifications */
+.notification.critical {
+  border-left-color: var(--critical);
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.notification.critical:hover {
+  background-color: rgba(255, 0, 0, 0.15);
+}
+
+/* Control center */
 .control-center {
-  background: @surface; /* Fundo sólido da cor Surface */
-  border-radius: 24px;
-  border: 1px solid @outline;
-  box-shadow: 0 4px 12px @shadow;
-  padding: 14px;
+  background-color: var(--background-dark);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  padding: 15px;
 }
 
-/* Widget de Mídia, Volume, etc. */
-.widget-title {
-  color: @on_surface;
-  font-size: 1.3em;
+/* Control center header */
+.control-center-header {
+  color: var(--foreground);
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Clear all button */
+.notification-clear-all {
+  background-color: var(--primary);
+  color: var(--foreground);
+  border-radius: 4px;
+  padding: 10px 20px;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.notification-clear-all:hover {
+  background-color: var(--primary-light);
+}
+
+.notification-clear-all:active {
+  background-color: var(--primary-dark);
+}
+
+/* Do Not Disturb toggle */
+.do-not-disturb-toggle {
+  background-color: var(--background-dark);
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+}
+
+.do-not-disturb-label {
+  color: var(--foreground);
+  font-size: 12px;
   font-weight: bold;
 }
 
-.widget-buttons-grid {
-  background-color: @surface_container;
-  border-radius: 16px;
-  padding: 8px;
+/* Low priority notifications */
+.notification.low {
+  border-left-color: var(--success);
+  opacity: 0.8;
 }
 
-.widget-buttons-grid > flowbox > flowboxchild > button {
-  background: transparent;
-  border-radius: 12px;
+/* Normal priority notifications */
+.notification.normal {
+  border-left-color: var(--primary);
 }
 
-.widget-buttons-grid > flowbox > flowboxchild > button:hover {
-  background: @surface_container_high;
+/* High priority notifications */
+.notification.high {
+  border-left-color: var(--warning);
 }
 
-/* Notificações */
-.notification-row {
-  outline: none;
-  margin-top: 8px;
+/* Image in notification */
+.notification-image {
+  border-radius: 4px;
+  margin-top: 10px;
 }
 
-.notification {
-  background: @surface_container; /* Fundo do card de notificação */
-  border-radius: 16px;
-  padding: 12px;
-  margin: 6px 0;
-  border: 1px solid @outline;
-  box-shadow: 0 2px 4px @shadow;
+/* Scrollbar styling */
+scrollbar {
+  background-color: rgba(30, 30, 46, 0.5);
+  border-radius: 4px;
+  min-width: 4px;
 }
 
-.notification-content {
-  background: transparent;
+scrollbar trough {
+  background-color: rgba(30, 30, 46, 0.3);
+  border-radius: 4px;
 }
 
-.summary {
-  font-size: 15px;
-  font-weight: 800;
-  color: @primary; /* Destaque no título */
+scrollbar slider {
+  background-color: var(--primary);
+  border-radius: 4px;
+  min-height: 20px;
 }
 
-.time {
-  font-size: 11px;
-  color: @on_surface_variant;
-}
-
-.body {
-  font-size: 14px;
-  color: @on_surface;
-}
-
-/* Ações / Botões da notificação */
-.notification-action {
-  color: @on_primary;
-  background: @primary;
-  border-radius: 12px;
-}
-
-/* Central de Widgets (DND, Bluetooth, etc) */
-.widget-dnd {
-  background: @surface_container;
-  color: @on_surface;
-  border-radius: 12px;
-  margin: 8px;
-}
-
-.widget-dnd > switch:checked {
-  background: @primary;
-  border-color: @primary;
-}
-
-.widget-label > label {
-  color: @on_surface;
-}
-
-.widget-mpris {
-    background-color: @surface_container;
-    border-radius: 16px;
-    padding: 16px;
-}
-
-.widget-mpris-title {
-    font-weight: bold;
-    font-size: 1.1rem;
-    color: @on_surface;
-}
-
-.widget-mpris-subtitle {
-    font-size: 0.9rem;
-    color: @on_surface_variant;
+scrollbar slider:hover {
+  background-color: var(--primary-light);
 }
