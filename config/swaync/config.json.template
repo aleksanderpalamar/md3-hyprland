@@ -1,0 +1,71 @@
+{
+  "$schema": "/etc/swaync/configSchema.json",
+  "positionX": "right",
+  "positionY": "top",
+  "layer": "overlay",
+  "control-center-layer": "top",
+  "layer-shell": true,
+  "cssPriority": "user",
+  "control-center-margin-top": 10,
+  "control-center-margin-bottom": 10,
+  "control-center-margin-right": 10,
+  "control-center-margin-left": 10,
+  "notification-2fa-action": true,
+  "notification-inline-replies": false,
+  "notification-window-width": 400,
+  "keyboard-shortcuts": true,
+  "image-visibility": "when-available",
+  "transition-time": 200,
+  "hide-on-clear": false,
+  "hide-on-action": true,
+  "script-fail-notify": true,
+  "widgets": [
+    "title",
+    "dnd",
+    "mpris",
+    "volume",
+    "backlight",
+    "buttons-grid",
+    "notifications"
+  ],
+  "widget-config": {
+    "title": {
+      "text": "{{MSG_SWAYNC_TITLE}}",
+      "clear-all-button": true,
+      "button-text": "{{MSG_SWAYNC_CLEAR}}"
+    },
+    "dnd": {
+      "text": "{{MSG_SWAYNC_DND}}"
+    },
+    "volume": {
+      "label": "{{MSG_SWAYNC_VOLUME}}"
+    },
+    "backlight": {
+      "label": "{{MSG_SWAYNC_BRIGHTNESS}}"
+    },
+    "mpris": {
+      "image-size": 96,
+      "image-radius": 12
+    },
+    "buttons-grid": {
+      "actions": [
+        {
+          "label": "Bluetooth",
+          "command": "python3 ~/.config/hypr/scripts/bluetooth_menu.py"
+        },
+        {
+          "label": "Settings",
+          "command": "python3 ~/.config/hypr/scripts/settings_menu.py"
+        },
+        {
+          "label": "Theme",
+          "command": "~/.config/hypr/scripts/toggle_theme.sh"
+        },
+        {
+          "label": "Terminal",
+          "command": "kitty"
+        }
+      ]
+    }
+  }
+}
